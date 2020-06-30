@@ -1,0 +1,21 @@
+/*
+ * Copyright (c) 2020 Nick Winans
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "kyria.dtsi"
+
+&kscan0 {
+	col-gpios
+		= <&pro_micro_d 1 GPIO_ACTIVE_HIGH>
+		, <&pro_micro_d 0 GPIO_ACTIVE_HIGH>
+		, <&pro_micro_d 2 GPIO_ACTIVE_HIGH>
+		, <&pro_micro_d 3 GPIO_ACTIVE_HIGH>
+		, <&pro_micro_d 6 GPIO_ACTIVE_HIGH>
+		, <&pro_micro_d 7 GPIO_ACTIVE_HIGH>
+		, <&pro_micro_d 8 GPIO_ACTIVE_HIGH>
+		, <&pro_micro_d 9 GPIO_ACTIVE_HIGH>
+		;
+};
+
