@@ -1,14 +1,16 @@
-name: Build
+name: Build All
 
 on:
   push:
     paths:
-      - ".github/workflows/build.yml"
-      - "app/**"
+      - ".github/workflows/build-all.yml"
+      - "app/boads/**"
   pull_request:
     paths:
-      - ".github/workflows/build.yml"
-      - "app/**"
+      - ".github/workflows/build-all.yml"
+      - "app/boads/**"
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   build:
@@ -18,20 +20,49 @@ jobs:
     strategy:
       matrix:
         board:
+          - bluemicro840_v1
           - nice_nano
+          - nrfmicro_13
+          - proton_c
         shield:
+          - boardsource3x4
+          - corne_left
+          - corne_right
+          - cradio_left
+          - cradio_right
+          - crbn
+          - iris_left
+          - iris_right
+          - jian_left
+          - jian_right
+          - jorne_left
+          - jorne_right
           - kyria_left
           - kyria_right
-        build_args:
-          - -DCONFIG_ZMK_DISPLAY=y -DCONFIG_EC11=y -DCONFIG_EC11_TRIGGER_GLOBAL_THREAD=y -DCONFIG_ZMK_RGB_UNDERGLOW=y -DCONFIG_WS2812_STRIP=y
+          - lily58_left
+          - lily58_right
+          - microdox_left
+          - microdox_right
+          - nibble
+          - qaz
+          - quefrency_left
+          - quefrency_right
+          - reviung41
+          - romac
+          - romac_plus
+          - settings_reset
+          - sofle_left
+          - sofle_right
+          - splitreus62_left
+          - splitreus62_right
+          - tg4x
         include:
           - board: dz60rgb_rev1
-          - board: nrfmicro_13
-            shield: romac_plus
-            build_args: -DCONFIG_EC11=y -DCONFIG_EC11_TRIGGER_GLOBAL_THREAD=y
+          - board: nrf52840_m2
+            shield: m60
+          - board: planck_rev6
           - board: proton_c
-            shield: romac_plus
-            build_args: -DCONFIG_EC11=y -DCONFIG_EC11_TRIGGER_GLOBAL_THREAD=y
+            shield: clueboard_california
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -74,7 +105,7 @@ jobs:
           echo ::set-output name=shield-arg::${SHIELD_ARG}
           echo ::set-output name=artifact-name::${ARTIFACT_NAME}
       - name: West build
-        run: west build -s app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} ${{ matrix.build_args }}
+        run: west build -s app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }}
       - name: Archive build
         uses: actions/upload-artifact@v2
         with:
