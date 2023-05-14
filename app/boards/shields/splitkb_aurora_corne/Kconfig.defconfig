@@ -1,7 +1,7 @@
 # Copyright (c) 2022 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
-if SHIELD_SPLITKB_AURORA_CORNE_LEFT
+if SHIELD_SPLITKB_AURORA_CORNE_RIGHT
 
 config ZMK_KEYBOARD_NAME
     default "Aurora Corne"
