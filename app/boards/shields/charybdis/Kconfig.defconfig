@@ -26,3 +26,13 @@ config SCROLL_LAYER_INDEX
 config MOUSE_LAYER_ACTIVE_MS
 	int "Amount of milliseconds the mouse layer will be active after using the trackball"
 	default 400
+
+if ZMK_BACKLIGHT
+
+config PWM
+    default y
+
+config LED_PWM
+    default y
+
+endif # ZMK_BACKLIGHT
